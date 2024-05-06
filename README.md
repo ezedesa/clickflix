@@ -1,0 +1,2 @@
+# django24
+crud
