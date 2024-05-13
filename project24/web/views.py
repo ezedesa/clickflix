@@ -47,4 +47,4 @@ def mostrar_catalogo(request):
     ]
 
 
-    return render(request, 'web/landing.html', {"peliculas":context})
+    return render(request, 'web/catalogo.html', {"peliculas":context})
