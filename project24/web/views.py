@@ -4,6 +4,51 @@ from django.http import HttpResponse
 def index(request):
     return render(request, 'web/index.html')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def ver_pelicula(request,id):
 
     lista_peliculas = [
