@@ -1,0 +1,48 @@
+{% extends "web/base.html" %}
+
+
+{% block main %}
+
+<section>
+{% for compra in compras %}
+<article>
+    <p>{{ compra | upper }}</p>
+</article>
+{% empty %}
+<article>
+    <p>No hay compras realizadas</p>
+</article>
+{% endfor %}
+<select>
+    <option value="opcion1">Opción 1</option>
+    <option value="opcion2">Opción 2</option>
+    <option value="opcion3">Opción 3</option>
+    <option value="opcion4">Opción 4</option>
+</select>
+
+<form method="POST" action="{% url 'tareas_crear' %}">
+    {% csrf_token %}
+    <input type="submit" value="Confirmar compra" class="btn_guardar">
+    <input type="submit" value="Cancelar compra" class="btn_cancelar">
+</form>
+
+</section>
+
+<h2>Estado de compra</h2>
+{% if compra_exitosa %}
+    <p style="padding:15px; background-color: green; color: white;">COMPRA EXITOSA</p>
+    <nav>
+         <ul>
+            <li><a href="{% url 'index' %}">Ver película</a></li>
+        </ul>
+    </nav>
+{% else %}
+    <p style="padding:15px; background-color: red; color: white;">COMPRA CANCELADA</p>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Volver a catálogo</a></li>
+        </ul>
+    </nav>
+{% endif %}
+
+{% endblock %}
