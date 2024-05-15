@@ -16,6 +16,8 @@
     <p><strong>Sinopsis:</strong> {{pelicula.sinopsis}} </p>
     <p><strong>Precio:</strong> {{pelicula.precio}} </p>
     <p><strong>ID:</strong> {{pelicula.id}} </p>
-    <button type='submit'>Comprar</button>
+ 
+    <h4><a href="{% url 'validacion_compra' pelicula.id %}">Comprar</a></h4>
+
 </body>
 </html>
