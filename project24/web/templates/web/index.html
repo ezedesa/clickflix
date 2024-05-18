@@ -7,8 +7,12 @@
 </head>
 <body>
 
-    <h1>Pagina de Bienvenida a la APP de Peliculas</h1>
-    <a href="{% url 'catalogo' %}">Ver Pelicula</a>
+    <h2>Login</h2>
+    <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        {{ login }}
+        <input type="submit" value="Iniciar sesión">
+    </form>
 
 </body>
 </html>
