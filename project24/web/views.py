@@ -5,25 +5,8 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from .datos import lista_peliculas
-from .forms import *
-
-
 
 # Create your views here.
-
-def index(request):
-    context = {}
-    if request.method == "GET":
-        context['login'] = LoginForm()
-    else:
-        form = LoginForm(request.POST)
-        context['login'] = form
-        if form.is_valid():
-            usuario = form.cleaned_data['usuario']
-            print("-----------")
-            print(usuario)
-            return redirect('bienvenido', usuario=usuario)
-    return render(request, 'web/index.html', context)
 
 def bienvenido(request, usuario):
     context={
