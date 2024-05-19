@@ -2,7 +2,7 @@ from web.forms import LoginForm
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-def index(request):
+def login(request):
     context = {}
     if request.method == "GET":
         context['login'] = LoginForm()
@@ -13,5 +13,5 @@ def index(request):
             usuario = form.cleaned_data['usuario']
             print("-----------")
             print(usuario)
-            return redirect('bienvenido', usuario=usuario)
-    return render(request, 'web/index.html', context)
+            return redirect('index', usuario=usuario)
+    return render(request, 'web/login.html', context)

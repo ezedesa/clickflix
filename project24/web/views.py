@@ -12,7 +12,7 @@ def bienvenido(request, usuario):
     context={
         'usuario':usuario
     }
-    return render(request, 'web/bienvenido.html', context)
+    return render(request, 'web/index.html', context)
 
 def compra_exitosa(request):
     formulario=MedioDePagoForm()

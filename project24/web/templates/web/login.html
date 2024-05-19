@@ -1,0 +1,21 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block title %} 
+- Login 
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/web/css/login.css' %}">
+{% endblock %}
+
+{% block mainContent %}
+<section class="login-form">
+    <h2>Login</h2>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        {{ login }}
+        <input type="submit" value="Iniciar sesión">
+    </form>
+</section>
+{% endblock %}
