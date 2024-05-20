@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo</title>
-</head>
-<body>
-    
-    <header>
-    </header>
+{% extends 'web/base.html' %}
+{% load static %}
 
-    <main>
+{% block title %} 
+- Our Catalogue 
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/web/css/catalogue.css' %}">
+{% endblock %}
+
+
+{% block mainContent %}
         <h1>Catalogo</h1>
 
         {% for pelicula in peliculas %}
@@ -31,9 +31,4 @@
             </div>
         {% endfor %}
 
-    </main>
-
-    <footer>
-    </footer>
-</body>
-</html>
+{% endblock %}
