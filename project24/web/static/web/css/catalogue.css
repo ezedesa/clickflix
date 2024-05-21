@@ -1,14 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
+
 .container {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(0.5rem);
   border-radius: 1rem;
-  padding-top: 5rem;
+  padding-top: 2.5rem;
 }
 
 .container h1 {
+  font-family: "Changa", sans-serif;
   color: #ffaa3c;
   text-align: center;
   padding: 1rem;
+  font-size: clamp(2.5rem, -0.3999999999999999rem + 4.5vw, 5rem) !important;
+
 }
 
 .page {
@@ -16,8 +21,8 @@
   grid-template-columns: repeat(auto-fit, minmax(min(150px, 275px), 1.3333fr));
   align-items: center;
   justify-content: center;
-  margin: 2rem;
-  padding: 4rem;
+  margin: 1rem;
+  padding: 2rem 4rem;
   gap: 30px;
   overflow: hidden;
 }
@@ -67,10 +72,10 @@
 
 
 .movie-title>a {
+  font-family: "Changa", sans-serif;
   text-decoration: none;
   color: #ff0e67;
-  font-size: clamp(1.5rem, 0.6667rem + 1.3333vw, 2rem) !important;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-size: clamp(1rem, 0.2667rem + 1.3333vw, 1.5rem) !important;
 }
 
 .movie-info {
