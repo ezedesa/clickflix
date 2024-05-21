@@ -1,0 +1,24 @@
+#main-ver-pelicula{
+    margin: 0 25px 10px 25px;
+    padding: 0 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#main-ver-pelicula p {
+    margin: 10px 0;
+}
+
+#boton-comprar{
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#boton-comprar:hover{
+    background-color: white;
+    color: brown;
+    border-color: brown;
+}
