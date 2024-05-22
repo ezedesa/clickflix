@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprando</title>
-</head>
-<body>
-    <form method="post" action="{% url 'compra_exitosa' %}">
-        <h1>Concluye tu compra</h1>
+{% extends "web/base.html" %}
+{% load static %}
+
+{% block title %}
+Comprando
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/web/css/validacion_compra.css' %}">
+{% endblock %}
+
+{% block mainContent %}
+    <form method="post" action="{% url 'validacion_compra' pelicula.id %}">
         <p><strong>Titulo:</strong> {{pelicula.titulo}}</p>
         <p><strong>Precio:</strong> {{pelicula.precio}} </p>
         {% csrf_token %}
         {{ form_pago }}
+
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <br>
-        <h3><a href="{% url 'compra_exitosa' %}">Hacer compra</a></h3>
-        <h3><a href="{% url 'catalogo' %}">Volver</a></h3>
+        <input type="submit" id='boton-comprar' class='btn' value="Finalizar compra">
+        <h3><a id='boton-comprar' class='btn' href="{% url 'catalogo' %}">Volver</a></h3>
 
     </form>
-</body>
-</html>
+{% endblock %}
+

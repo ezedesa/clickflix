@@ -14,24 +14,23 @@ def bienvenido(request, usuario):
     }
     return render(request, 'web/index.html', context)
 
-def compra_exitosa(request):
-    formulario=MedioDePagoForm()
-    contexto = {
-        'form_pago': formulario
-    }
-    if request.method == 'POST':
-
-        messages.success(request, 'Compra exitosa')
-    return render(request, 'web/compra_exitosa.html', contexto)
-
 
 def ver_pelicula(request, id):
     pelicula = next((p for p in lista_peliculas if p["id"] == id), None)
     return render(request, 'web/ver_pelicula.html', {"pelicula": pelicula})
 	
 def validacion_compra(request, id):
+    formulario=MedioDePagoForm()
     pelicula = next((p for p in lista_peliculas if p["id"] == id), None)
-    return render(request, 'web/validacion_compra.html', {"pelicula": pelicula})
+
+    if request.method == 'POST':
+
+        messages.success(request, 'Compra exitosa')
+    contexto = {
+        'form_pago': formulario,
+        'pelicula': pelicula
+    }
+    return render(request, 'web/validacion_compra.html', contexto)
 
 def mostrar_catalogo(request):
     return render(request, 'web/catalogo.html', {"peliculas": lista_peliculas})

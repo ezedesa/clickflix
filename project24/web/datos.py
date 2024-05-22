@@ -8,6 +8,7 @@ lista_peliculas = [
             "precio" : "29.99",
             "genero" : ["ciencia ficcion","accion","aventura"],
             "duracion" : "2hs 25min", 
+            "url_imagen": "https://es.web.img3.acsta.net/pictures/24/02/12/14/09/5012504.jpg"
         },
         {
             "id" : "2",
@@ -18,6 +19,7 @@ lista_peliculas = [
             "precio" : "24.99",
             "genero" : ["Drama","Historica"],
             "duracion" : "3hs 1m", 
+            "url_imagen": "https://pbs.twimg.com/media/FvUVt3hXgAAxP1H?format=jpg&name=900x900"
         },
         {
             "id" : "3",
@@ -28,6 +30,7 @@ lista_peliculas = [
             "precio" : "29.99",
             "genero" : ["Belica" , "Accion"],
             "duracion" : "1h 49m", 
+            "url_imagen": "https://agendadecine.ar/wp-content/uploads/2024/04/civil-war.jpg"
         },
         {
             "id" : "4",
@@ -38,5 +41,6 @@ lista_peliculas = [
             "precio" : "19.99",
             "genero" : ["Animacion"],
             "duracion" : "1h 41m", 
+            "url_imagen": "https://es.web.img3.acsta.net/img/c7/8f/c78f03f18bedb20a5bb8171012b053ff.jpg"
         },
     ]
