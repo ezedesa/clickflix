@@ -11,7 +11,7 @@ class MedioDePagoForm(forms.Form):
         ('debito', 'Débito'),
         ('transferencia', 'Transferencia'),
     ]
-    nombre = forms.CharField(label="Nombre", required=True) 
+    nombre = forms.CharField(label="Nombre", required=True)
     apellido = forms.CharField(label="Apellido", required=True) 
     numero_tarjeta = forms.IntegerField(label="Número de tarjeta")
     medios = forms.ChoiceField(choices=medios_de_pago, label='Medio de pago')
