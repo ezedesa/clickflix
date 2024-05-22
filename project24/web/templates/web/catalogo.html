@@ -1,39 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo</title>
-</head>
-<body>
-    
-    <header>
-    </header>
+{% extends 'web/base.html' %}
+{% load static %}
 
-    <main>
-        <h1>Catalogo</h1>
+{% block title %}
+- Our Catalogue
+{% endblock %}
 
-        {% for pelicula in peliculas %}
-            <div>
-            <h4><a href="{% url 'ver_pelicula' pelicula.id %}">{{pelicula.titulo}}</a></h4>
-            <p><span>
+{% block extra_css %}
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel="stylesheet" href="{% static '/web/css/catalogue.css' %}">
+{% endblock %}
 
-                    {%for i in pelicula.genero %}
-                    {{i|capfirst}} - 
-                    {%endfor%} 
-
-                </span>
-                <span>
-                    {{pelicula.duracion}}
-                </span></p>
-
-            <p>{{pelicula.precio}}</p>
-            </div>
-        {% endfor %}
-
-    </main>
-
-    <footer>
-    </footer>
-</body>
-</html>
+{% block mainContent %}
+<section>
+    <div class="container">
+        <h1>
+            Nuestro Catalogo
+        </h1>
+        <div class="page">
+            {% for pelicula in peliculas %}
+            <div class="movie-card">
+                <div class="movie-header">
+                    <a href="{% url 'ver_pelicula' pelicula.id %}">
+                        <img src={{pelicula.url_imagen}} alt="">
+                    </a>
+                </div><!--movie-header-->
+                <div class="movie-content">
+                    <div class="movie-content-header">
+                        <h3 class="movie-title">
+                            <a href="{% url 'ver_pelicula' pelicula.id %}">
+                                {{pelicula.titulo}}
+                            </a>
+                        </h3>
+                    </div>
+                    <div class="movie-info">
+                        <div class="info-section">
+                            <label>Genero</label>
+                            {% for i in pelicula.genero %}
+                            <p>{{i|capfirst}}</p>
+                            {% endfor %}
+                        </div><!-- genero(s) -->
+                        <div class="basic-info">
+                            <div class="info-section">
+                                <span>{{pelicula.anio}}</span>
+                            </div><!-- año salida -->
+                            <div class="info-section">
+                                <span>{{pelicula.duracion}}</span>
+                            </div><!-- duracion -->
+                        </div>
+                    </div>
+                </div><!--movie-content-->
+            </div><!--movie-card-->
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

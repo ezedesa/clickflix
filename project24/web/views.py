@@ -6,42 +6,24 @@ from django.contrib import messages
 from django.urls import reverse, reverse_lazy
 from .datos import lista_peliculas
 
-
-
-
 # Create your views here.
 
-def index(request):
-    return render(request, 'web/index.html')
+def bienvenido(request, usuario):
+    context={
+        'usuario':usuario
+    }
+    return render(request, 'web/index.html', context)
 
 def compra_exitosa(request):
-    """formulario=MedioDePagoForm()
+    formulario=MedioDePagoForm()
     contexto = {
         'form_pago': formulario
     }
-    if request.method == 'POST' and formulario.is_valid():
+    if request.method == 'POST':
 
         messages.success(request, 'Compra exitosa')
-        #return redirect('index')
-    return render(request, 'web/compra_exitosa.html', contexto)"""
-    contexto = {}
-
-    if request.method == "GET":
-        contexto['form_pago'] = MedioDePagoForm()
-    
-    else: # Asumo que es un POST
-        form = MedioDePagoForm(request.POST)
-        contexto['form_pago'] = form
-        
-        # Validar el form
-        if form.is_valid():
-            # Si el form es correcto
-            # Lo redirijo a una vista segura por ejemplo el index
-            
-            messages.success(request, 'COMPRA EXITOSA')
-
-            return redirect('compra_exitosa')
     return render(request, 'web/compra_exitosa.html', contexto)
+
 
 def ver_pelicula(request, id):
     pelicula = next((p for p in lista_peliculas if p["id"] == id), None)

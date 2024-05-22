@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');
+
+.container {
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(0.5rem);
+  border-radius: 1rem;
+  padding-top: 2.5rem;
+}
+
+.container h1 {
+  font-family: "Changa", sans-serif;
+  color: #ffaa3c;
+  text-align: center;
+  padding: 1rem;
+  font-size: clamp(2.5rem, -0.3999999999999999rem + 4.5vw, 5rem) !important;
+
+}
+
+.page {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 275px), 1.3333fr));
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  padding: 2rem 4rem;
+  gap: 30px;
+  overflow: hidden;
+}
+
+.movie-card {
+  color:rgb(238, 157, 59);
+  background: #000000;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.movie-header {
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.movie-header>a>img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.movie-header>a>img:hover {
+  opacity: .6; 
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: all .2s ease 0s; 
+}
+.movie-card:hover{
+  transform: scale(1.1);
+  box-shadow: 0 0 5px #ffaa3c;
+  transition: all .2s ease 0s; 
+}
+
+.movie-content {
+  padding: 18px 18px 24px 18px;
+  margin: 0;
+}
+
+.movie-content-header,
+.movie-info {
+  display: table;
+  vertical-align: top;
+  width: 100%;
+}
+
+
+.movie-title>a {
+  font-family: "Changa", sans-serif;
+  text-decoration: none;
+  color: #ff0e67;
+  font-size: clamp(1rem, 0.2667rem + 1.3333vw, 1.5rem) !important;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.basic-info{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.info-section {
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.info-section:has(span) {
+  text-align: right;
+}
+
+.info-section label {
+  display: block;
+  color: rgba(247, 247, 247, 0.692);
+  margin-bottom: .5em;
+  font-size: 8px;
+}
+
+.info-section span {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.info-section p {
+  font-weight: 700;
+  font-size: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  
+  .page {
+    margin: 1rem;
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+
+  .movie-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+}
+
+@media (min-width: 700px) and (max-width: 770px){
+  .container{
+    margin: auto;
+  }
+  .page{
+    padding: 5%;
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 200px), 1.3333fr));
+
+  }
+}
