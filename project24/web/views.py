@@ -20,12 +20,18 @@ def ver_pelicula(request, id):
     return render(request, 'web/ver_pelicula.html', {"pelicula": pelicula})
 	
 def validacion_compra(request, id):
-    formulario=MedioDePagoForm()
     pelicula = next((p for p in lista_peliculas if p["id"] == id), None)
-
+    
     if request.method == 'POST':
+        formulario = MedioDePagoForm(request.POST)
+        if formulario.is_valid():
+            messages.success(request, 'Compra exitosa')
 
-        messages.success(request, 'Compra exitosa')
+        else:
+            messages.error(request, 'Por favor, corrige los errores en el formulario.')
+    else:
+        formulario = MedioDePagoForm()
+
     contexto = {
         'form_pago': formulario,
         'pelicula': pelicula
