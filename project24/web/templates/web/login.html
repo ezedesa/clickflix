@@ -11,11 +11,12 @@
 
 {% block mainContent %}
 <section class="login-form">
-    <h2>Login</h2>
+<div class="container">
     <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
         {{ login }}
-        <input type="submit" value="Iniciar sesión">
+        <input type="submit" value="Iniciar sesión" id="boton-comprar" class="btn">
     </form>
+</div>
 </section>
 {% endblock %}

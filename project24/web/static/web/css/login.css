@@ -1,4 +1,23 @@
 .login-form{
+    padding-top: 30px;
     background-color: rgba(0,0,0,0.5);
     height: 250px;
+}
+
+#boton-comprar{
+    margin-top: 15px;
+    border: 2px solid white;
+    background-color: brown;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#boton-comprar:hover{
+    background-color: white;
+    color: brown;
+    border-color: brown;
+}
+
+body{
+    color: rgb(226, 222, 197)
 }
