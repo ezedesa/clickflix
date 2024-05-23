@@ -1,0 +1,25 @@
+main{
+    margin: 25px;
+}
+
+h2{
+    color:white;
+}
+
+.base-body{
+    background-size: auto;
+}
+
+#boton-catalogo{
+    border: 2px solid white;
+    background-color: #ffaa3c;
+    color: rgb(62, 62, 62);
+    transition: background-color 0.3s ease;
+    margin: 2px 5px;
+}
+
+#boton-catalogo:hover{
+    background-color: transparent;
+    color: #ffaa3c;
+    border-color: #ffaa3c;
+}

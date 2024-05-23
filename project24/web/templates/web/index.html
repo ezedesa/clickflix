@@ -1,14 +1,15 @@
+{% extends 'web/base.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Bienvenid@ {{ usuario }}</h2>
-    <a href="{% url 'catalogo' %}">Ir al catálogo</a>
+{% block title %}
+- Welcome
+{% endblock %}
 
-</body>
-</html>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '/web/css/index.css' %}">
+{% endblock %}
+
+{% block mainContent %}
+<h2>Bienvenid@ {{ usuario }}</h2>
+<a id='boton-catalogo' class='btn' href="{% url 'catalogo' %}">Ir al catálogo</a>
+{% endblock %}

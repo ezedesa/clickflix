@@ -10,17 +10,24 @@
 {% endblock %}
 
 {% block mainContent %}
-    <div id='main-ver-pelicula'>
-        <h1>Ficha de {{pelicula.titulo}}</h1>
-        <p><strong>Director:</strong> {{pelicula.director}} </p>
-        <p><strong>Año:</strong> {{pelicula.anio}} </p>
-        <p><strong>Titulo:</strong> {{pelicula.titulo}}</p>
-        <p><strong>Duración:</strong> {{pelicula.duracion}} </p>
-        <p><strong>Género:</strong> {{ pelicula.genero|join:", " }} </p>
-        <p><strong>Sinopsis:</strong> {{pelicula.sinopsis}} </p>
-        <p><strong>Precio:</strong> ${{pelicula.precio}} </p>
-        <p><strong>ID:</strong> {{pelicula.id}} </p>
-
-        <h4><a href="{% url 'validacion_compra' pelicula.id %}" id='boton-comprar' class='btn'>Comprar</a></h4>
+<div id='main-ver-pelicula'>
+    <h1>Ficha de {{pelicula.titulo}}</h1>
+    <div id='ficha-pelicula'>
+        <div id='data-pelicula'>
+            <p><strong>Director:</strong> {{pelicula.director}} </p>
+            <p><strong>Año:</strong> {{pelicula.anio}} </p>
+            <p><strong>Titulo:</strong> {{pelicula.titulo}}</p>
+            <p><strong>Duración:</strong> {{pelicula.duracion}} </p>
+            <p><strong>Género:</strong> {{ pelicula.genero|join:", " }} </p>
+            <p><strong>Sinopsis:</strong> {{pelicula.sinopsis}} </p>
+            <p><strong>Precio:</strong> ${{pelicula.precio}} </p>
+            <p><strong>ID:</strong> {{pelicula.id}} </p>
+        </div>
+        <img src={{pelicula.url_imagen}} class='poster-pelicula' alt="poster de la {{pelicula.titulo}}">
     </div>
+    <div id='botones-container'>
+        <h4><a href="{% url 'validacion_compra' pelicula.id %}" id='boton-comprar' class='btn'>Comprar</a></h4>
+        <h4><a href="{% url 'catalogo' %}" id='boton-cancelar' class='btn'>Cancelar</a></h4>
+    <div>
+</div>
 {% endblock %}
