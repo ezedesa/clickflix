@@ -23,12 +23,17 @@
   <nav>
     <!-- logo -->
     <div class="login-top">
-      <img src="{% static '/web/img/logo-nb.png' %}" alt="clickflix-logo">
+      <a href=""><img src="{% static '/web/img/logo-nb.png' %}" alt="clickflix-logo"></a>
     </div>
 
     <!-- otros links -->
     <div>
-
+        <ul>
+          <li><a href="#">Home</a>
+          <li><a href="{% url 'catalogo' %}">Catalogo</a></li>
+          <li><a href="#">Mis Peliculas</a></li>
+          <li><a href="{% url 'add_movie' %}">+</a></li>
+      </ul>
     </div>
   </nav>
   

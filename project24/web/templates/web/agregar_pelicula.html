@@ -1,0 +1,26 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block title %}
+- Create Entry
+{% endblock %}
+
+{% block extra_css %}
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel="stylesheet" href="{% static '/web/css/catalogue.css' %}">
+{% endblock %}
+
+
+{% block mainContent %}
+<section>
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Agregar al catalogo" id="boton-agregar-pelicula" class="btn">
+        </form>
+    </div>
+</section>
+{% endblock %}

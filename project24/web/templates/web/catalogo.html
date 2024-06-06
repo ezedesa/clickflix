@@ -20,14 +20,16 @@
             {% for pelicula in peliculas %}
             <div class="movie-card">
                 <div class="movie-header">
-                    <a href="{% url 'ver_pelicula' pelicula.id %}">
-                        <img src={{pelicula.url_imagen}} alt="">
+                    <!-- ahora el parametro es id_pelicula que es el mismo nombre que lleva el model -->
+                    <a href="{% url 'ver_pelicula' pelicula.id_pelicula %}">
+                        <!-- el atributo src sera la url de la imagen(guardada en bbdd), sino el default -->
+                        <img src={{pelicula.imagen.url}} alt={{pelicula.imagen.url}} >
                     </a>
                 </div><!--movie-header-->
                 <div class="movie-content">
                     <div class="movie-content-header">
                         <h3 class="movie-title">
-                            <a href="{% url 'ver_pelicula' pelicula.id %}">
+                            <a href="{% url 'ver_pelicula' pelicula.id_pelicula %}">
                                 {{pelicula.titulo}}
                             </a>
                         </h3>
@@ -35,9 +37,7 @@
                     <div class="movie-info">
                         <div class="info-section">
                             <label>Genero</label>
-                            {% for i in pelicula.genero %}
-                            <p>{{i|capfirst}}</p>
-                            {% endfor %}
+                            <p>{{pelicula.genero|capfirst}}</p>
                         </div><!-- genero(s) -->
                         <div class="basic-info">
                             <div class="info-section">
