@@ -42,7 +42,7 @@
 }
 
 .movie-header>a>img {
-  width: 100%;
+  max-height: 250px;
   border-radius: 10px 10px 0 0;
 }
 

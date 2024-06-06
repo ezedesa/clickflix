@@ -10,7 +10,7 @@ Comprando
 {% endblock %}
 
 {% block mainContent %}
-    <form method="post" action="{% url 'validacion_compra' pelicula.id %}">
+    <form method="post" action="{% url 'validacion_compra' pelicula.id_pelicula %}">
         <p><strong>Titulo:</strong> {{pelicula.titulo}}</p>
         <p><strong>Precio:</strong> {{pelicula.precio}} </p>
         {% csrf_token %}

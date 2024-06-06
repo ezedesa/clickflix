@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse, reverse_lazy
-from .datos import lista_peliculas
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView 
 from .forms import MedioDePagoForm, PeliculaForm
 from .models import Pelicula
 
@@ -19,12 +19,11 @@ def bienvenido(request, usuario):
 
 
 def ver_pelicula(request, id):
-    pelicula = next((p for p in lista_peliculas if p["id"] == id), None)
-    return render(request, 'web/ver_pelicula.html', {"pelicula": pelicula})
+    pelicula = get_object_or_404(Pelicula, pk=id)
+    return render(request, 'web/ver_pelicula.html', {'pelicula': pelicula})
 	
 def validacion_compra(request, id):
-    pelicula = next((p for p in lista_peliculas if p["id"] == id), None)
-    
+    pelicula = get_object_or_404(Pelicula, pk=id)
     if request.method == 'POST':
         formulario = MedioDePagoForm(request.POST)
         if formulario.is_valid():
@@ -62,4 +61,11 @@ class MoviesCreateView(CreateView):
     # form que usa como base para mostrar en el html
     form_class = PeliculaForm
 
-
+class PeliculaUpdateView(UpdateView): 
+    # specify the model you want to use 
+    model = Pelicula 
+    template_name = "web/editar_pelicula.html"
+    # specify the fields 
+    form_class = PeliculaForm
+    # can specify success url 
+    success_url = reverse_lazy('catalogo')

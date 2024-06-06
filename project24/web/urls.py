@@ -7,6 +7,7 @@ urlpatterns = [
     # CRUD PELICULAS
     path('catalogo/', views.MoviesListView.as_view(), name="catalogo"),
     path('add_movie/', views.MoviesCreateView.as_view(), name="add_movie"),
+    path('update_movie/<int:pk>/', views.PeliculaUpdateView.as_view(), name='update_movie'),
 
     path('index/<str:usuario>', views.bienvenido, name='index'),
     path('ver_pelicula/<str:id>', views.ver_pelicula, name='ver_pelicula'),
