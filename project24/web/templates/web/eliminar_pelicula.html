@@ -1,47 +1,15 @@
 {% extends 'web/base.html' %}
 {% load static %}
 
-{% block title %}
-- Our Catalogue
-{% endblock %}
-
-{% block extra_css %}
-<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-<link rel="stylesheet" href="{% static '/web/css/catalogue.css' %}">
-{% endblock %}
-
 {% block mainContent %}
-<section>
-    <div class="container">
-        <h1>
-            Eliminar
-        </h1>
-        <div class="page">
-            {% for pelicula in peliculas %}
-            <div class="movie-card">
-                <div class="movie-header">
-                    <a href="{% url 'deleted_movie' pelicula.id_pelicula %}">
-                    </a>
-                </div><!--movie-header-->
-                <div class="movie-content">
-                    <div class="movie-content-header">
-                        <h3 class="movie-title">
-                            <a class="borrar" href="{% url 'deleted_movie' pelicula.id_pelicula %}">Borrar: {{pelicula.titulo}}</a>
-                            </a>
-                        </h3>
-                    </div>
-                    <div class="movie-info">
-                        <div class="info-section">
-                            <label>Genero</label>
-                            <p>{{pelicula.genero|capfirst}}</p>
-                            <span>{{pelicula.anio}}</span>
-                            <span>{{pelicula.duracion}}</span>
-                        </div>
-                    </div>
-                </div><!--movie-content-->
-            </div><!--movie-card-->
-            {% endfor %}
-        </div>
-    </div>
-</section>
+<article>
+    <h3>Borrar registro</h3>
+    <form method="post">
+        {% csrf_token %}
+        <p>¿Estás seguro de querer borrar la película seleccionada?</p>
+        {{ form }}
+        <input type="submit" value="Confirmar" id='boton-confirmar-peli'>
+    </form>
+        <h4><a id='boton-cancelar-peli' href="{% url 'catalogo' %}">Cancelar</a></h4>
+</article>
 {% endblock %}

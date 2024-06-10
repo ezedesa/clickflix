@@ -7,7 +7,10 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView,DeleteView
 from .forms import MedioDePagoForm, PeliculaForm
-from .models import Pelicula
+from .models import Pelicula, Usuario, Transaccion
+
+from django.core.exceptions import ValidationError
+
 
 # Create your views here.
 
@@ -30,16 +33,11 @@ class MoviesListView(ListView):
     context_object_name='peliculas'
     template_name='web/catalogo.html'
 
-#Muestra catalogo para eliminar peliculas 
-class ListViewToDelete(ListView):
-    model=Pelicula
-    context_object_name='peliculas'
-    template_name='web/eliminar_pelicula.html'
-
+#te lleva a la view para eliminar la pelicula
 class MoviesDelete(DeleteView):
     model=Pelicula
     context_object_name='peliculas'
-    template_name='web/peli_eliminada.html'
+    template_name='web/eliminar_pelicula.html'
     success_url = reverse_lazy('catalogo')
 
 
@@ -64,10 +62,13 @@ class PeliculaUpdateView(UpdateView):
     success_url = reverse_lazy('catalogo')
 
 
+
 def validacion_compra(request,id):
 
-    pelicula = get_object_or_404(Pelicula, pk=id)
-
+    # la pelicula a comprar la traemos por id
+    pelicula = Pelicula.objects.get(id_pelicula=id)
+    # simula ser el usuario logeado
+    usuario = Usuario.objects.get(id_usuario = 1)
 
     if request.method == "GET":
         formulario = MedioDePagoForm(initial={'peliculas': pelicula})
@@ -76,13 +77,20 @@ def validacion_compra(request,id):
         formulario = MedioDePagoForm(request.POST)
         
         if formulario.is_valid():
-            messages.success(request, 'Se compró con éxito ')
-            formulario.save()
+            formulario.instance.peliculas = pelicula
+            formulario.instance.usuarios = usuario
+            if Transaccion.objects.filter(usuarios=usuario, peliculas=pelicula).exists():
+                messages.error(request, "Usted ya compro esta pelicula, no puede volver a comprarla")
+            else:
+                messages.success(request, 'Se compró con éxito ')
+                formulario.save()
         else:
             messages.error(request, 'Por favor, corrige los errores en el formulario.')
 
     contexto = {
-            'formulario': formulario,
+        'precio':pelicula.precio,
+        'pelicula': pelicula,
+        'formulario': formulario,
     }
 
     return render(request, 'web/validacion_compra.html', contexto)

@@ -11,7 +11,8 @@ Comprando
 
 {% block mainContent %}
 <section>
-    <p><strong>Titulo:</strong> {{compra.titulo}}</p>
+    <p><strong>Titulo:</strong> {{pelicula}}</p>
+    <p><strong>Precio:</strong> {{precio}}</p>
     <div class="container">
         <form action="" method="POST">
             {% csrf_token %}
@@ -21,10 +22,11 @@ Comprando
             {% if messages %}
             <ul>
                 {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <li{% if message.tags %} class={{ message.tags }} {% endif %}>{{ message }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
+            <br>
             <input type="submit" id='boton-comprar' class='btn' value="Finalizar compra">
             <h3><a id='boton-comprar' class='btn' href="{% url 'catalogo' %}">Volver</a></h3>
         </form>

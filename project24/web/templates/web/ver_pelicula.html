@@ -1,8 +1,8 @@
 {% extends "web/base.html" %}
 {% load static %}
 
-{% block title %} 
-- Data Sheet 
+{% block title %}
+- Data Sheet
 {% endblock %}
 
 {% block extra_css %}
@@ -21,13 +21,20 @@
             <p><strong>Género:</strong> {{ pelicula.genero}} </p>
             <p><strong>Sinopsis:</strong> {{pelicula.sinopsis}} </p>
             <p><strong>Precio:</strong> ${{pelicula.precio}} </p>
-            <p><strong>ID:</strong> {{pelicula.id}} </p>
         </div>
         <img src={{pelicula.imagen.url}} class='poster-pelicula' alt="poster de la {{pelicula.titulo}}">
     </div>
-    <div id='botones-container'>
-        <h4><a href="{% url 'validacion_compra' pelicula.id_pelicula %}" id='boton-comprar' class='btn'>Comprar</a></h4>
-        <h4><a href="{% url 'catalogo' %}" id='boton-cancelar' class='btn'>Cancelar</a></h4>
-    <div>
+    <div class="d-flex justify-content-between">
+        <div id='botones-container'>
+            <h4><a href="{% url 'validacion_compra' pelicula.id_pelicula %}" id='boton-comprar' class='btn'>Comprar</a>
+            </h4>
+            <h4><a href="{% url 'catalogo' %}" id='boton-cancelar' class='btn'>Cancelar</a></h4>
+        </div>
+        <div id='botones-container'>
+            <h4><a href="{% url 'update_movie' pelicula.id_pelicula %}" class='btn btn-warning'>Editar</a></h4>
+            <h4><a href="{% url 'delete_movie' pelicula.id_pelicula %}"  class='btn btn-danger'>Eliminar</a></h4>
+        </div>
+    </div>
 </div>
+
 {% endblock %}

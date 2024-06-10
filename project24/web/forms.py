@@ -25,7 +25,7 @@ class MedioDePagoForm(forms.ModelForm):
     class Meta:
         model= Transaccion
         fields=['medio_pago','numero_tarjeta','usuarios','peliculas']
-
+        exclude = ['usuarios','peliculas']
     
     def clean_numero_tarjeta(self):
         numero_tarjeta = self.cleaned_data["numero_tarjeta"]
@@ -34,10 +34,10 @@ class MedioDePagoForm(forms.ModelForm):
 
         return self.cleaned_data["numero_tarjeta"]
     
-    def clean(self):
-        cleaned_data = super().clean()
-        peliculas = cleaned_data.get('peliculas')
-        usuarios = cleaned_data.get('usuarios')
-        if Transaccion.objects.filter(usuarios=usuarios, peliculas=peliculas).exists():
-            raise ValidationError("Usted ya compro esta pelicula, no puede volver a comprarla")
-        return self.cleaned_data
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     peliculas = cleaned_data.get('peliculas')
+    #     usuarios = cleaned_data.get('usuarios')
+    #     if Transaccion.objects.filter(usuarios=usuarios, peliculas=peliculas).exists():
+    #         raise ValidationError("Usted ya compro esta pelicula, no puede volver a comprarla")
+    #     return self.cleaned_data

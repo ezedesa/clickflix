@@ -17,6 +17,10 @@ class Pelicula(models.Model):
         if self.imagen and hasattr(self.imagen, 'url'):
             return self.imagen.url
 
+    def __str__(self) -> str:
+        return self.titulo
+    
+    
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True, editable=False)
     nombre = models.CharField(max_length=100 ,verbose_name="Nombre")
@@ -24,6 +28,9 @@ class Usuario(models.Model):
     usuario = models.CharField(verbose_name="Usuario", unique=True)
     contrasenia = models.CharField(verbose_name="Contraseña", unique=True)
     lista_peliculas = models.ManyToManyField(Pelicula, through="Transaccion")
+
+    def __str__(self) -> str:
+        return self.usuario
 
 class Transaccion(models.Model):
     usuarios = models.ForeignKey(Usuario, on_delete=models.CASCADE)
