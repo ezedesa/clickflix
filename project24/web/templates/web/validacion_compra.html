@@ -10,23 +10,25 @@ Comprando
 {% endblock %}
 
 {% block mainContent %}
-    <form method="post" action="{% url 'validacion_compra' pelicula.id_pelicula %}">
-        <p><strong>Titulo:</strong> {{pelicula.titulo}}</p>
-        <p><strong>Precio:</strong> {{pelicula.precio}} </p>
-        {% csrf_token %}
-        {{ form_pago }}
-
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <br>
-        <input type="submit" id='boton-comprar' class='btn' value="Finalizar compra">
-        <h3><a id='boton-comprar' class='btn' href="{% url 'catalogo' %}">Volver</a></h3>
-
-    </form>
+<section>
+    <p><strong>Titulo:</strong> {{compra.titulo}}</p>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ formulario.as_table }}
+            </table>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <input type="submit" id='boton-comprar' class='btn' value="Finalizar compra">
+            <h3><a id='boton-comprar' class='btn' href="{% url 'catalogo' %}">Volver</a></h3>
+        </form>
+    </div>
+</section>
 {% endblock %}
 

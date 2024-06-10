@@ -11,6 +11,7 @@ def login(request):
         context['login'] = form
         if form.is_valid():
             usuario = form.cleaned_data['usuario']
+            #request.session['usuario'] = usuario
             print("-----------")
             print(usuario)
             return redirect('index', usuario=usuario)

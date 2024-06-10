@@ -15,3 +15,54 @@
 .login-top img {
     width: 150px;
 }
+
+header .messages .success {
+    background-color: rgba(0,255,0,0.5);
+    padding: 15px;
+    color: white;
+}
+.btn_confirmar{
+    background-color: #ffaa3c;
+}
+body{
+    color: beige;
+}
+
+.btn_cancelar{
+    background-color: rgb(190, 190, 190);
+    border-color: brown;
+}
+
+#boton-confirmar-peli{
+    border: 2px solid white;
+    background-color: #ff0e67;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin: 15px;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 3px;
+}
+
+#boton-confirmar-peli:hover{
+    background-color: transparent;
+    color: #ff0e67;
+    border-color: #ff0e67;
+}
+
+#boton-cancelar-peli{
+    border: 2px solid #271fff;
+    background-color: transparent;
+    color: #271fff;
+    transition: background-color 0.3s ease;
+    margin: 15px;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 3px;
+}
+
+#boton-cancelar-peli:hover{
+    background-color: #271fff;
+    color: white;
+    border-color: white;
+}
