@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
-from django.views.generic.edit import UpdateView 
+from django.views.generic.edit import UpdateView,DeleteView
 from .forms import MedioDePagoForm, PeliculaForm
 from .models import Pelicula
 
@@ -21,25 +21,6 @@ def bienvenido(request, usuario):
 def ver_pelicula(request, id):
     pelicula = get_object_or_404(Pelicula, pk=id)
     return render(request, 'web/ver_pelicula.html', {'pelicula': pelicula})
-	
-def validacion_compra(request, id):
-    pelicula = get_object_or_404(Pelicula, pk=id)
-    if request.method == 'POST':
-        formulario = MedioDePagoForm(request.POST)
-        if formulario.is_valid():
-            messages.success(request, 'Compra exitosa')
-
-        else:
-            messages.error(request, 'Por favor, corrige los errores en el formulario.')
-    else:
-        formulario = MedioDePagoForm()
-
-    contexto = {
-        'form_pago': formulario,
-        'pelicula': pelicula
-    }
-    return render(request, 'web/validacion_compra.html', contexto)
-
 
 ## crud peliculas
 
@@ -48,6 +29,18 @@ class MoviesListView(ListView):
     model=Pelicula
     context_object_name='peliculas'
     template_name='web/catalogo.html'
+
+#Muestra catalogo para eliminar peliculas 
+class ListViewToDelete(ListView):
+    model=Pelicula
+    context_object_name='peliculas'
+    template_name='web/eliminar_pelicula.html'
+
+class MoviesDelete(DeleteView):
+    model=Pelicula
+    context_object_name='peliculas'
+    template_name='web/peli_eliminada.html'
+    success_url = reverse_lazy('catalogo')
 
 
 # View clase que agrega entradas(de peliculas) a la BBDD
@@ -69,3 +62,27 @@ class PeliculaUpdateView(UpdateView):
     form_class = PeliculaForm
     # can specify success url 
     success_url = reverse_lazy('catalogo')
+
+
+def validacion_compra(request,id):
+
+    pelicula = get_object_or_404(Pelicula, pk=id)
+
+
+    if request.method == "GET":
+        formulario = MedioDePagoForm(initial={'peliculas': pelicula})
+
+    else:
+        formulario = MedioDePagoForm(request.POST)
+        
+        if formulario.is_valid():
+            messages.success(request, 'Se compró con éxito ')
+            formulario.save()
+        else:
+            messages.error(request, 'Por favor, corrige los errores en el formulario.')
+
+    contexto = {
+            'formulario': formulario,
+    }
+
+    return render(request, 'web/validacion_compra.html', contexto)

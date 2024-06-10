@@ -1,9 +1,6 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
-#
-# Create your models here.
 
 class Pelicula(models.Model):
     id_pelicula = models.AutoField(primary_key=True, editable=False)
@@ -27,13 +24,16 @@ class Usuario(models.Model):
     usuario = models.CharField(verbose_name="Usuario", unique=True)
     contrasenia = models.CharField(verbose_name="Contraseña", unique=True)
     lista_peliculas = models.ManyToManyField(Pelicula, through="Transaccion")
-    #lista_peliculas = models.CharField(verbose_name="Lista Peliculas", null=True)
 
 class Transaccion(models.Model):
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    id_pelicula = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
-    medio_pago= models.CharField(verbose_name="Medio de pago")
+    usuarios = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    peliculas = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
+    CHOICES = [('efectivo', 'Efectivo'),('tarjeta', 'Tarjeta de crédito/débito'),('transferencia', 'Transferencia bancaria')]
+    medio_pago = models.CharField(choices=CHOICES)
+    numero_tarjeta= models.CharField(verbose_name="Numero tarjeta", null=True, max_length=16)
 
-    fecha = models.DateField(verbose_name="Fecha", auto_now_add=True, null=True)
     class Meta:
-        unique_together = (('id_usuario', 'id_pelicula'),)
+        unique_together = (('usuarios', 'peliculas'),)
+    
+    def __str__(self):
+        return f" Usuario: {self.usuarios} | Pelicula: {self.peliculas}"
