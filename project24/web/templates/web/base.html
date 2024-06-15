@@ -32,11 +32,21 @@
           <li><a href="#">Home</a>
           <li><a href="{% url 'catalogo' %}">Catalogo</a></li>
           <li><a href="#">Mis Peliculas</a></li>
-          <li><a href="{% url 'add_movie' %}">+</a></li>
+          {% if perms.web.add_pelicula %}<li><a href="{% url 'add_movie' %}">+</a></li>{% endif %}
       </ul>
     </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {%endif%}> {{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
   </nav>
-  
+  <div class="actions">
+    {% if not user.is_authenticated %}<a class="login-button" href="{% url 'login' %}">Loguearse</a> {%endif%}
+    {% if user.is_authenticated %}<a class="logout-button" href="{% url 'logout' %}">Desloguearse</a> {%endif%}
+  </div>
   <!-- main content -->
   <main>
     

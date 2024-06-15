@@ -66,3 +66,28 @@ body{
     color: white;
     border-color: white;
 }
+
+body .actions .login-button{
+    border: 2px solid rgb(255, 158, 47);
+    background-color: rgb(255, 255, 255);
+    color: #000;
+    transition: background-color 0.3s ease;
+    margin: 35px;
+    font-size: large;
+    padding: 3px;
+}
+
+body .actions .logout-button{
+    border: 2px solid red;
+    background-color: rgb(94, 94, 94);
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+    margin: 15px;
+    font-size: large;
+    padding: 3px;
+}
+#boton-confirmar-peli:hover{
+    background-color: transparent;
+    color: #ff0e67;
+    border-color: #ff0e67;
+}

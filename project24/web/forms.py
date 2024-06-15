@@ -2,10 +2,10 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import Pelicula,Transaccion
 
-class LoginForm(forms.Form):
+"""class LoginForm(forms.Form):
     usuario = forms.CharField(label='Usuario')
     clave = forms.CharField(label='Contraseña')
-    
+"""    
 # crea un form  que hereda de una clase "wrapper" de modelos para crear forms
 class PeliculaForm (forms.ModelForm):
     class Meta:

@@ -1,4 +1,4 @@
-from web.forms import LoginForm
+"""from web.forms import LoginForm
 from django.shortcuts import redirect
 from django.shortcuts import render
 
@@ -16,3 +16,4 @@ def login(request):
             print(usuario)
             return redirect('index', usuario=usuario)
     return render(request, 'web/login.html', context)
+"""

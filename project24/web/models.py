@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class Pelicula(models.Model):
@@ -35,7 +34,9 @@ class Usuario(models.Model):
 class Transaccion(models.Model):
     usuarios = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     peliculas = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
-    CHOICES = [('efectivo', 'Efectivo'),('tarjeta', 'Tarjeta de crédito/débito'),('transferencia', 'Transferencia bancaria')]
+    #CHOICES = [('efectivo', 'Efectivo'),('tarjeta', 'Tarjeta de crédito/débito'),('transferencia', 'Transferencia bancaria')]
+    CHOICES = [('tarjeta', 'Tarjeta de crédito'),('tarjeta', 'Tarjeta de débito')]
+
     medio_pago = models.CharField(choices=CHOICES)
     numero_tarjeta= models.CharField(verbose_name="Numero tarjeta", null=True, max_length=16)
 

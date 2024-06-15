@@ -31,8 +31,8 @@
             <h4><a href="{% url 'catalogo' %}" id='boton-cancelar' class='btn'>Cancelar</a></h4>
         </div>
         <div id='botones-container'>
-            <h4><a href="{% url 'update_movie' pelicula.id_pelicula %}" class='btn btn-warning'>Editar</a></h4>
-            <h4><a href="{% url 'delete_movie' pelicula.id_pelicula %}"  class='btn btn-danger'>Eliminar</a></h4>
+            {% if perms.web.change_pelicula %}<h4><a href="{% url 'update_movie' pelicula.id_pelicula %}" class='btn btn-warning'>Editar</a></h4>{% endif %}
+            {% if perms.web.delete_pelicula %}<h4><a href="{% url 'delete_movie' pelicula.id_pelicula %}"  class='btn btn-danger'>Eliminar</a></h4>{% endif %}
         </div>
     </div>
 </div>

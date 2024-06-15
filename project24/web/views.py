@@ -2,24 +2,37 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
-
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView,DeleteView
 from .forms import MedioDePagoForm, PeliculaForm
 from .models import Pelicula, Usuario, Transaccion
-
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
 
 
 # Create your views here.
+def index(request):
 
-def bienvenido(request, usuario):
+    contexto = {}
+
+    return render(request, 'web/index.html', contexto)
+
+def user_logout(request):
+    logout(request)
+
+    messages.success(request, 'Sesion Cerrada')
+
+    return redirect('index')
+
+"""def bienvenido(request, usuario):
     context={
         'usuario':usuario
     }
     return render(request, 'web/index.html', context)
-
+"""
 
 def ver_pelicula(request, id):
     pelicula = get_object_or_404(Pelicula, pk=id)
@@ -62,7 +75,7 @@ class PeliculaUpdateView(UpdateView):
     success_url = reverse_lazy('catalogo')
 
 
-
+@login_required
 def validacion_compra(request,id):
 
     # la pelicula a comprar la traemos por id

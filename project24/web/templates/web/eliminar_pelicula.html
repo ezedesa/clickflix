@@ -6,7 +6,7 @@
     <h3>Borrar registro</h3>
     <form method="post">
         {% csrf_token %}
-        <p>¿Estás seguro de querer borrar la película seleccionada?</p>
+        <p>¿Estás seguro de querer borrar la película seleccionada "{{object.titulo}}"?</p>
         {{ form }}
         <input type="submit" value="Confirmar" id='boton-confirmar-peli'>
     </form>
