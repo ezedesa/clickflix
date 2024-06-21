@@ -1,4 +1,5 @@
 from django.db import models
+from project24 import settings 
 # Create your models here.
 
 class Pelicula(models.Model):
@@ -21,15 +22,22 @@ class Pelicula(models.Model):
     
     
 class Usuario(models.Model):
-    id_usuario = models.AutoField(primary_key=True, editable=False)
+    #id_usuario = models.AutoField(primary_key=True, editable=False)
     nombre = models.CharField(max_length=100 ,verbose_name="Nombre")
     email = models.CharField(verbose_name="Email", unique=True)
-    usuario = models.CharField(verbose_name="Usuario", unique=True)
-    contrasenia = models.CharField(verbose_name="Contraseña", unique=True)
+    #usuario = models.CharField(verbose_name="Usuario", unique=True)
+    #contrasenia = models.CharField(verbose_name="Contraseña", unique=True)
     lista_peliculas = models.ManyToManyField(Pelicula, through="Transaccion")
 
+    user = models.OneToOneField(
+		settings.AUTH_USER_MODEL,
+		on_delete=models.CASCADE,
+		null=True,
+		blank=True	
+	)    
+
     def __str__(self) -> str:
-        return self.usuario
+        return self.user.username
 
 class Transaccion(models.Model):
     usuarios = models.ForeignKey(Usuario, on_delete=models.CASCADE)

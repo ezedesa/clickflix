@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Pelicula,Transaccion
+from .models import Pelicula,Transaccion,Usuario
+from django.contrib.auth.models import User 
 
 """class LoginForm(forms.Form):
     usuario = forms.CharField(label='Usuario')
@@ -41,3 +42,22 @@ class MedioDePagoForm(forms.ModelForm):
     #     if Transaccion.objects.filter(usuarios=usuarios, peliculas=peliculas).exists():
     #         raise ValidationError("Usted ya compro esta pelicula, no puede volver a comprarla")
     #     return self.cleaned_data
+
+class UsuarioForm (forms.ModelForm):
+    class Meta:
+        # de que modelo crea el form
+        model = Usuario
+        # que campos muestra el form
+        fields = ['nombre', 'email']
+
+    def clean_nombre(self):
+        nombre = self.cleaned_data.get('nombre')
+        if not all(part.isalpha() for part in nombre.split()):
+            raise ValidationError('El nombre solo debe contener letras y espacios.')
+        return nombre
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError('El email ya está registrado.')
+        return email

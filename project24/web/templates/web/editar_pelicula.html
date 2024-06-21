@@ -16,10 +16,13 @@
     <div class="container">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <table>
+            <table id='form-editar'>
                 {{ form.as_table }}
             </table>
-            <input type="submit" value="Confirmar Cambios" id="boton-agregar-pelicula" class="btn">
+            <div class='contenedor-botones-form'>
+                <input type="submit" value="Confirmar Cambios" class="boton-confirmar" class="btn">
+                <input type="submit" value="Cancelar" class="boton-cancelar" class="btn">
+            </div>    
         </form>
     </div>
 </section>

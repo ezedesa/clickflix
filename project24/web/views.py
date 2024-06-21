@@ -81,7 +81,7 @@ def validacion_compra(request,id):
     # la pelicula a comprar la traemos por id
     pelicula = Pelicula.objects.get(id_pelicula=id)
     # simula ser el usuario logeado
-    usuario = Usuario.objects.get(id_usuario = request.user.id)
+    usuario = Usuario.objects.get(user_id = request.user.id)
 
     if request.method == "GET":
         formulario = MedioDePagoForm(initial={'peliculas': pelicula})

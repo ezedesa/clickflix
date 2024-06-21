@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'clickflixdb',
         'USER': 'postgres',
-        'PASSWORD': 'root',
+        'PASSWORD': 'Pelado11',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
