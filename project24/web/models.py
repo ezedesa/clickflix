@@ -1,5 +1,7 @@
 from django.db import models
 from project24 import settings 
+
+
 # Create your models here.
 
 class Pelicula(models.Model):

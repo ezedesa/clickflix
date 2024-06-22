@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'project24.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'clickflixdb',
+        'NAME': 'clickflixdb2',
         'USER': 'postgres',
-        'PASSWORD': 'Pelado11',
+        'PASSWORD': 'test321',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

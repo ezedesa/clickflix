@@ -31,7 +31,7 @@
         <ul>
           <li><a href="#">Home</a>
           <li><a href="{% url 'catalogo' %}">Catalogo</a></li>
-          <li><a href="#">Mis Peliculas</a></li>
+          <li><a href="{% url 'mis_peliculas' %}">Mis Peliculas</a></li>
           {% if perms.web.add_pelicula %}<li><a href="{% url 'add_movie' %}">+</a></li>{% endif %}
       </ul>
     </div>

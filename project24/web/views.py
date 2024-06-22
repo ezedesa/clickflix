@@ -11,6 +11,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ValidationError
+from django.db.models import Prefetch
 
 
 # Create your views here.
@@ -74,6 +75,15 @@ class PeliculaUpdateView(UpdateView):
     # can specify success url 
     success_url = reverse_lazy('catalogo')
 
+class MyMovies(LoginRequiredMixin,ListView):
+    model=Pelicula
+    context_object_name='peliculas'
+    template_name='web/mis_peliculas.html'
+
+    def get_queryset(self):
+        return Pelicula.objects.prefetch_related(
+            Prefetch('transaccion_set', queryset=Transaccion.objects.all())
+        )
 
 @login_required
 def validacion_compra(request,id):
