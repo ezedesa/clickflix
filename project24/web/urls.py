@@ -18,6 +18,6 @@ urlpatterns = [
     path('ver_pelicula/<int:id>', views.ver_pelicula, name='ver_pelicula'),
     path('validacion_compra/<int:id>/', views.validacion_compra, name="validacion_compra"),
 
-    path('mis_peliculas/', views.MyMovies.as_view(), name="mis_peliculas"),
+    path('mis_peliculas/', views.mis_peliculas, name="mis_peliculas"),
 
 ]

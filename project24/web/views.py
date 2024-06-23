@@ -75,15 +75,11 @@ class PeliculaUpdateView(UpdateView):
     # can specify success url 
     success_url = reverse_lazy('catalogo')
 
-class MyMovies(LoginRequiredMixin,ListView):
-    model=Pelicula
-    context_object_name='peliculas'
-    template_name='web/mis_peliculas.html'
-
-    def get_queryset(self):
-        return Pelicula.objects.prefetch_related(
-            Prefetch('transaccion_set', queryset=Transaccion.objects.all())
-        )
+@login_required
+def mis_peliculas(request):
+    usuario = Usuario.objects.get(user_id = request.user.id)  
+    context = {'usuario': usuario}
+    return render(request, 'web/mis_peliculas.html', context)
 
 @login_required
 def validacion_compra(request,id):

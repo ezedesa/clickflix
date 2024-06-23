@@ -17,8 +17,8 @@
             Mis Películas
         </h1>
         <div class="page">
-            {% for pelicula in peliculas %}
-                {% for transaccion in pelicula.transaccion_set.all %}
+            {% for pelicula in usuario.lista_peliculas.all %}
+
                 <div class="movie-card">
                     <div class="movie-header">
                         <!-- ahora el parametro es id_pelicula que es el mismo nombre que lleva el model -->
@@ -30,7 +30,7 @@
                         <div class="movie-content-header">
                             <h3 class="movie-title">
                                 <a>
-                                    {{ transaccion.peliculas }}
+                                    {{ pelicula.titulo }}
                                 </a>
                             </h3>
                         </div>
@@ -52,8 +52,8 @@
                         </div>
                     </div><!--movie-content-->
                 </div><!--movie-card-->
+
             {% endfor %}
-        {% endfor %}
         </div>
     </div>
 </section>
