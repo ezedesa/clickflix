@@ -17,7 +17,7 @@ from django.db.models import Prefetch
 # Create your views here.
 def index(request):
 
-    contexto = {}
+    contexto = {'current_view' : 'index'}
 
     return render(request, 'web/index.html', contexto)
 
@@ -37,7 +37,7 @@ def user_logout(request):
 
 def ver_pelicula(request, id):
     pelicula = get_object_or_404(Pelicula, pk=id)
-    return render(request, 'web/ver_pelicula.html', {'pelicula': pelicula})
+    return render(request, 'web/ver_pelicula.html', {'pelicula': pelicula, 'current_view' : 'ver_pelicula'})
 
 ## crud peliculas
 
@@ -78,7 +78,9 @@ class PeliculaUpdateView(UpdateView):
 @login_required
 def mis_peliculas(request):
     usuario = Usuario.objects.get(user_id = request.user.id)  
-    context = {'usuario': usuario}
+    context = {'usuario': usuario,
+                'current_view' : 'mis_peliculas'
+                }
     return render(request, 'web/mis_peliculas.html', context)
 
 @login_required
@@ -110,6 +112,7 @@ def validacion_compra(request,id):
         'precio':pelicula.precio,
         'pelicula': pelicula,
         'formulario': formulario,
+        'current_view' : 'validacion_compra'
     }
 
     return render(request, 'web/validacion_compra.html', contexto)

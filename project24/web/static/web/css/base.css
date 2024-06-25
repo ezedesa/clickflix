@@ -2,6 +2,36 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.main{
+    padding: 30px;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.items-nav{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+}
+
+.items-nav li a{
+    text-decoration: none;
+    color: #ff37a8;
+    padding: 3px;
+    background-color: #2e2e2e79;
+    border: 3px solid #e6e6e60b;
+    border-radius: 5px;
+}
+
+.items-nav li a:hover{
+    border-color:#e7e7e7;
+    color: #e7e7e7;
 }
 
 .base-body {
@@ -35,13 +65,14 @@ body{
 
 #boton-confirmar-peli{
     border: 2px solid white;
+    border-radius: 10px;
     background-color: #ff0e67;
     color: white;
     transition: background-color 0.3s ease;
     margin: 15px;
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
-    padding: 3px;
+    padding: 5px;
 }
 
 #boton-confirmar-peli:hover{
@@ -52,13 +83,15 @@ body{
 
 #boton-cancelar-peli{
     border: 2px solid #271fff;
+    border-radius: 10px;
     background-color: transparent;
     color: #271fff;
     transition: background-color 0.3s ease;
     margin: 15px;
     font-size: large;
     font-family: 'Courier New', Courier, monospace;
-    padding: 3px;
+    padding: 5px;
+    text-decoration: none;
 }
 
 #boton-cancelar-peli:hover{
@@ -68,7 +101,12 @@ body{
 }
 
 body .actions .login-button{
+    position: fixed;
+    top: 0;
+    right: 0;
     border: 2px solid rgb(255, 158, 47);
+    border-radius: 5px;
+    text-decoration: none;
     background-color: rgb(255, 255, 255);
     color: #000;
     transition: background-color 0.3s ease;
@@ -78,16 +116,31 @@ body .actions .login-button{
 }
 
 body .actions .logout-button{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
     border: 2px solid red;
-    background-color: rgb(94, 94, 94);
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: transparent /*rgb(94, 94, 94)*/;
     color: #ffffff;
     transition: background-color 0.3s ease;
     margin: 15px;
     font-size: large;
     padding: 3px;
 }
-#boton-confirmar-peli:hover{
-    background-color: transparent;
+
+
+#boton-agregar-pelicula{
+    margin: 20px 0;
     color: #ff0e67;
-    border-color: #ff0e67;
+    border-radius: 8px;
+    border: 2px solid #ff0e67;
+    background-color: #0e0e0e84;
+}
+
+#boton-agregar-pelicula:hover{
+    border-color: #e7e7e7;
+    color: #e7e7e7;
 }
