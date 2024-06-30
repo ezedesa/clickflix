@@ -30,9 +30,9 @@
     <div>
         {% if current_view != 'index' %}
           <ul class='items-nav'>
-            <li><a href="{% url 'index' %}">Home</a>
-            <li><a href="{% url 'catalogo' %}">Catalogo</a></li>
-            <li><a href="{% url 'mis_peliculas' %}">Mis Peliculas</a></li>
+            <li><a href="{% url 'index' %}">Inicio</a>
+            <li><a href="{% url 'catalogo' %}">Catálogo</a></li>
+            <li><a href="{% url 'mis_peliculas' %}">Mis Películas</a></li>
             {% if perms.web.add_pelicula %}<li><a href="{% url 'add_movie' %}">+</a></li>{% endif %}
           </ul>
         {%endif%}
@@ -58,8 +58,9 @@
 
   </main>
 
-  <!-- footer -->
-  <footer></footer>
+  <footer class="centered">
+    <p>ClickFlix 2024 - Todos los derechos reservados</p>
+  </footer>
 
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

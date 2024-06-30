@@ -2,8 +2,6 @@ from django.db import models
 from project24 import settings 
 
 
-# Create your models here.
-
 class Pelicula(models.Model):
     id_pelicula = models.AutoField(primary_key=True, editable=False)
     titulo = models.CharField(max_length=100, verbose_name="Título")
@@ -24,11 +22,8 @@ class Pelicula(models.Model):
     
     
 class Usuario(models.Model):
-    #id_usuario = models.AutoField(primary_key=True, editable=False)
     nombre = models.CharField(max_length=100 ,verbose_name="Nombre")
     email = models.CharField(verbose_name="Email", unique=True)
-    #usuario = models.CharField(verbose_name="Usuario", unique=True)
-    #contrasenia = models.CharField(verbose_name="Contraseña", unique=True)
     lista_peliculas = models.ManyToManyField(Pelicula, through="Transaccion")
 
     user = models.OneToOneField(
@@ -44,7 +39,6 @@ class Usuario(models.Model):
 class Transaccion(models.Model):
     usuarios = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     peliculas = models.ForeignKey(Pelicula, on_delete=models.CASCADE)
-    #CHOICES = [('efectivo', 'Efectivo'),('tarjeta', 'Tarjeta de crédito/débito'),('transferencia', 'Transferencia bancaria')]
     CHOICES = [('tarjeta', 'Tarjeta de crédito'),('tarjeta', 'Tarjeta de débito')]
 
     medio_pago = models.CharField(choices=CHOICES)

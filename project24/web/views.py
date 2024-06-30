@@ -28,51 +28,34 @@ def user_logout(request):
 
     return redirect('index')
 
-"""def bienvenido(request, usuario):
-    context={
-        'usuario':usuario
-    }
-    return render(request, 'web/index.html', context)
-"""
-
 def ver_pelicula(request, id):
     pelicula = get_object_or_404(Pelicula, pk=id)
     return render(request, 'web/ver_pelicula.html', {'pelicula': pelicula, 'current_view' : 'ver_pelicula'})
 
 ## crud peliculas
 
-#View clase que muestra el catalogo
+# muestra el catalogo
 class MoviesListView(ListView):
     model=Pelicula
     context_object_name='peliculas'
     template_name='web/catalogo.html'
 
-#te lleva a la view para eliminar la pelicula
 class MoviesDelete(DeleteView):
     model=Pelicula
     context_object_name='peliculas'
     template_name='web/eliminar_pelicula.html'
     success_url = reverse_lazy('catalogo')
 
-
-# View clase que agrega entradas(de peliculas) a la BBDD
 class MoviesCreateView(CreateView):
-    # model que usa para crear la view
     model = Pelicula
-    # fichero html donde se renderiza la view
     template_name = "web/agregar_pelicula.html"
-    # url donde se redirige una vez que clickeamos boton "submit"
     success_url = reverse_lazy('catalogo')
-    # form que usa como base para mostrar en el html
     form_class = PeliculaForm
 
 class PeliculaUpdateView(UpdateView): 
-    # specify the model you want to use 
     model = Pelicula 
     template_name = "web/editar_pelicula.html"
-    # specify the fields 
     form_class = PeliculaForm
-    # can specify success url 
     success_url = reverse_lazy('catalogo')
 
 @login_required
@@ -85,15 +68,11 @@ def mis_peliculas(request):
 
 @login_required
 def validacion_compra(request,id):
-
-    # la pelicula a comprar la traemos por id
     pelicula = Pelicula.objects.get(id_pelicula=id)
-    # simula ser el usuario logeado
     usuario = Usuario.objects.get(user_id = request.user.id)
 
     if request.method == "GET":
         formulario = MedioDePagoForm(initial={'peliculas': pelicula})
-
     else:
         formulario = MedioDePagoForm(request.POST)
         

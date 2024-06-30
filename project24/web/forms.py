@@ -34,20 +34,10 @@ class MedioDePagoForm(forms.ModelForm):
             raise ValidationError("El número de tarjeta debe ser de 16 dígitos.")
 
         return self.cleaned_data["numero_tarjeta"]
-    
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     peliculas = cleaned_data.get('peliculas')
-    #     usuarios = cleaned_data.get('usuarios')
-    #     if Transaccion.objects.filter(usuarios=usuarios, peliculas=peliculas).exists():
-    #         raise ValidationError("Usted ya compro esta pelicula, no puede volver a comprarla")
-    #     return self.cleaned_data
 
 class UsuarioForm (forms.ModelForm):
     class Meta:
-        # de que modelo crea el form
         model = Usuario
-        # que campos muestra el form
         fields = ['nombre', 'email']
 
     def clean_nombre(self):
