@@ -5,6 +5,7 @@
   backdrop-filter: blur(0.5rem);
   border-radius: 1rem;
   padding-top: 2.5rem;
+  min-width: 800px;
 }
 
 .container h1 {
@@ -18,12 +19,13 @@
 
 .page {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(150px, 275px), 1.3333fr));
+/*  grid-template-columns: repeat(auto-fit, minmax(min(150px, 275px), 1fr));*/
+  grid-template-columns: repeat(3,1fr); 
+  gap: 5px;
   align-items: center;
   justify-content: center;
   margin: 1rem;
   padding: 2rem 4rem;
-  gap: 30px;
   overflow: hidden;
 }
 
@@ -32,7 +34,9 @@
   background: #000000;
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  width: 250px;
+  min-width: 250px;
+  min-height: 400px;
+  margin: 10px;
 }
 
 .movie-header {
@@ -41,10 +45,12 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
+
 }
 
 .movie-header>a>img {
-  max-height: 250px;
+  margin-top: 20px;
+  max-height: 220px;
   border-radius: 10px 10px 0 0;
 }
 
@@ -78,6 +84,7 @@
   text-decoration: none;
   color: #ff0e67;
   font-size: clamp(1rem, 0.2667rem + 1.3333vw, 1.5rem) !important;
+  min-width: 200px;
 }
 
 .movie-info {

@@ -60,9 +60,11 @@ class PeliculaUpdateView(UpdateView):
 
 @login_required
 def mis_peliculas(request):
-    usuario = Usuario.objects.get(user_id = request.user.id)  
+    usuario = Usuario.objects.get(user_id = request.user.id)
+    tiene_peliculas = usuario.lista_peliculas.exists()  
     context = {'usuario': usuario,
-                'current_view' : 'mis_peliculas'
+                'current_view' : 'mis_peliculas',
+                'tiene_peliculas': tiene_peliculas
                 }
     return render(request, 'web/mis_peliculas.html', context)
 

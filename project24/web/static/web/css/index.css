@@ -16,6 +16,7 @@ h2{
     color: rgb(62, 62, 62);
     transition: background-color 0.3s ease;
     margin: 2px 5px;
+    justify-content: center;
 }
 
 #boton-catalogo:hover{
