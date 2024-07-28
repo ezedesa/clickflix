@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gbag7ra7(1#8dpb&y_v_je^%l6k-$wa56bq(q3!w5+pg8gv+2a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'project24.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'clickflixdb',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'clickflixdb2',
         'USER': 'postgres',
-        'PASSWORD': 'Pelado11',
+        'PASSWORD': 'test321',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
